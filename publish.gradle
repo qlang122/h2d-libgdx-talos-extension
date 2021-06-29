@@ -13,7 +13,7 @@ def isReleaseBuild
 def sonatypeRepositoryUrl
 
 //set build variables based on build type (release, continuous integration, development)
-if(hasProperty("RELEASE")) {
+if (hasProperty("RELEASE")) {
     isReleaseBuild = true
     sonatypeRepositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
     println "Performing release build"
@@ -55,7 +55,7 @@ artifacts {
     archives artifactSources
 }
 
-if(isReleaseBuild) {
+if (isReleaseBuild) {
     signing {
         useGpgCmd()
         sign configurations.archives
@@ -70,10 +70,9 @@ uploadArchives {
     repositories {
         if (isDevBuild) {
             mavenLocal()
-        }
-        else {
+        } else {
             mavenDeployer {
-                if(isReleaseBuild) {
+                if (isReleaseBuild) {
                     beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
                 }
 
@@ -88,12 +87,12 @@ uploadArchives {
                     artifactId = artifact
                     name 'HyperLap2D Talos extension for libGDX runtime'
                     description 'Talos VFX extension for HyperLap2D libgdx runtime'
-                    url 'https://github.com/rednblackgames/h2d-libgdx-talos-extension'
+                    url 'https://github.com/qlang122/h2d-libgdx-talos-extension'
 
                     scm {
-                        url 'scm:git@github.com:rednblackgames/h2d-libgdx-talos-extension.git'
-                        connection 'scm:git@github.com:rednblackgames/h2d-libgdx-talos-extension.git'
-                        developerConnection 'scm:git@github.com:rednblackgames/h2d-libgdx-talos-extension.git'
+                        url 'scm:git@github.com:qlang122/h2d-libgdx-talos-extension.git'
+                        connection 'scm:git@github.com:qlang122/h2d-libgdx-talos-extension.git'
+                        developerConnection 'scm:git@github.com:qlang122/h2d-libgdx-talos-extension.git'
                     }
 
                     licenses {
